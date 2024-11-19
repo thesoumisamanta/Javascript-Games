@@ -6,7 +6,7 @@ function startGame(){
 
     randomNumber = Math.floor(Math.random() * 100) + 1
     userGuesses = []
-    remainingGuesses = 10
+    remainingGuesses = 5
 
     document.getElementById('result').textContent = ''
     document.getElementById('guesses').textContent = ''
@@ -46,12 +46,17 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (userGuess === randomNumber) {
 
-        document.getElementById('result').textContent = "Congrats, you win!"
+        document.getElementById('result').textContent = "🎉 Congrats, you win!"
+        document.getElementById('result').classList.remove('congrats-animation');
         document.getElementById('submit').disabled = true
         document.getElementById('feedback').textContent = ''
         document.getElementById('playAgain').style.display = 'block'
         document.getElementById('remainingGuesses').textContent = ''
         document.getElementById('guesses').textContent = ''
+        document.querySelector('h1').textContent = ''
+        document.querySelector('p').textContent = ''
+        document.getElementById('userGuess').style.display = 'none'
+        document.getElementById('submit').style.display = 'none'
 
     } else if (userGuess < randomNumber) {
         document.getElementById('feedback').textContent = "Number is high"
@@ -60,9 +65,16 @@ document.getElementById('submit').addEventListener('click', () => {
     }
 
     if (remainingGuesses === 0 && userGuess !== randomNumber){
-        document.getElementById('result').textContent = "Oops, you loose"
+        document.getElementById('result').textContent = "😞 Oops, you lose"
         document.getElementById('submit').disabled = true
         document.getElementById('playAgain').style.display = "block"
+        document.getElementById('remainingGuesses').textContent = ''
+        document.getElementById('guesses').textContent = ''
+        document.getElementById('feedback').textContent = ""
+        document.querySelector('h1').textContent = ''
+        document.querySelector('p').textContent = ''
+        document.getElementById('userGuess').style.display = 'none'
+        document.getElementById('submit').style.display = 'none'
     }
 })
 
